@@ -8,6 +8,7 @@
                 <th>firstName</th>
                 <th>lastName</th>
                 <th>grade</th>
+                <th>coursePayment</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -17,6 +18,7 @@
                 <td th:text="${student.firstName}"></td>
                 <td th:text="${student.lastName}"></td>
                 <td th:text="${student.grade}"></td>
+                <td th:text="${student.coursePayment}"></td>
                 <td><a th:href="@{/edit/{id}(id=${student.id})}">Edit</a></td>
                 <td><a th:href="@{/delete/{id}(id=${student.id})}">Delete</a></td>
             </tr>

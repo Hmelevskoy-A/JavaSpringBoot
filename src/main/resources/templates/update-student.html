@@ -11,5 +11,8 @@
     <label for="grade">grade</label>
     <input type="text" th:field="*{grade}" id="grade" placeholder="grade">
     <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}"></span>
+    <input type="text" th:field="*{coursePayment}" id="coursePayment" placeholder="coursePayment">
+    <span th:if="${#fields.hasErrors('coursePayment')}" th:errors="*{coursePayment}"></span>
+    <input type="submit" value="Add Student">
     <input type="submit" value="Update Student">
 </form>

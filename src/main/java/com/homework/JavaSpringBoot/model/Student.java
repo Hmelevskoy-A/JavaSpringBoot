@@ -1,10 +1,16 @@
 package com.homework.JavaSpringBoot.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "students")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Student {
 
 	@Id
@@ -19,6 +25,16 @@ public class Student {
 
 	@Column(name = "grade", nullable = false)
 	private Integer grade;
+
+	@Column(name = "course_payment", nullable = false)
+	private Boolean coursePayment;
+
+
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "studyGroup_id")
+	private StudyGroup studyGroup;
+	public Student() {
+	}
 
 	public Long getId() {
 		return id;
@@ -52,8 +68,27 @@ public class Student {
 		this.grade = grade;
 	}
 
-	public String getName() {
-		return this.firstName + " " + this.lastName;
+	public Boolean getCoursePayment() {
+		return coursePayment;
 	}
 
+	public void setCoursePayment(Boolean coursePayment) {
+		this.coursePayment = coursePayment;
+	}
+
+	public StudyGroup getStudyGroup() {
+		return studyGroup;
+	}
+
+	public void setStudyGroup(StudyGroup studyGroup) {
+		this.studyGroup = studyGroup;
+	}
+
+	public Student(Long id, String firstName, String lastName, Integer grade, Boolean coursePayment) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.grade = grade;
+		this.coursePayment = coursePayment;
+	}
 }
